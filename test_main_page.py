@@ -1,5 +1,7 @@
 # pytest -v --tb=line --language=en test_main_page.py
 # pytest -s -m "new" test_main_page.py
+# pytest -s -m "login_guest" test_main_page.py
+
 
 import pytest
 from .pages.login_page import LoginPage
@@ -51,3 +53,24 @@ def test_guest_cant_see_product_in_basket_opened_from_main_page(browser):
     page.method_of_going_to_the_cart()  # метод перехода в корзину
     page.the_basket_is_empty() # проверка, что корзина пуста
     page.should_not_be_success_message() # проверка, что в корзине нет товаров
+
+@pytest.mark.login_guest
+class TestLoginFromMainPage():
+    # # гость может перейти на страницу входа в систему
+    def test_guest_can_go_to_login_page(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        page = BasketPage(browser, link)
+        page.open()
+        page.go_to_the_login_page()
+
+    # гость должен увидеть ссылку для входа в систему
+    def test_guest_should_see_login_link(self, browser):
+        link = "http://selenium1py.pythonanywhere.com/"
+        page = BasketPage(browser, link)
+        page.open()
+        page.go_to_the_login_page()
+        page.see_the_login_link()
+
+
+
+

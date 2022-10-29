@@ -5,7 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 import math
 from .locators import BasePageLocators
-import time
+
 
 
 class BasePage:
@@ -73,3 +73,12 @@ class BasePage:
     def method_of_going_to_the_cart(self):  # кнопка просмотра корзины
         button = self.browser.find_element(*BasePageLocators.VIEW_THE_SHOPPING_CART)
         button.click()
+        assert "/basket" in self.browser.current_url, "basket is absent in current url"
+
+    # метод перехода на страницу входа в систему
+    def go_to_the_login_page(self):
+        button = self.browser.find_element(*BasePageLocators.LOG_IN_TO_THE_SYSTEM)
+        button.click()
+        assert "/accounts/login" in self.browser.current_url, "/accounts/login is absent in current url"
+
+
