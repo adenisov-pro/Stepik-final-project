@@ -10,7 +10,7 @@ import time
 
 class BasePage:
 
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, url, timeout=5):
         self.browser = browser
         self.url = url
         self.browser.implicitly_wait(timeout)
@@ -61,7 +61,7 @@ class BasePage:
 
     # перейдите на страницу входа в систему
     def go_to_login_page(self):
-        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK_INVALID)
+        link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
 
     # должна быть ссылка для входа в систему
@@ -69,3 +69,7 @@ class BasePage:
         assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
         # Ссылка для входа в систему не представлена
 
+    # метод перехода в корзину
+    def method_of_going_to_the_cart(self):  # кнопка просмотра корзины
+        button = self.browser.find_element(*BasePageLocators.VIEW_THE_SHOPPING_CART)
+        button.click()

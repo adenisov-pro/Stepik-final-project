@@ -1,5 +1,7 @@
 from .base_page import BasePage
 from .locators import ProductPageLocators
+from selenium.webdriver.common.by import By
+
 
 class ProductPage(BasePage):
     def should_be_login_page(self):
@@ -37,4 +39,8 @@ class ProductPage(BasePage):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Message did not disappear after adding the product to the cart"
     # Сообщение не исчезло после добавления товара
+
+    def the_basket_is_empty(self):  # проверка, что корзина пуста
+        assert 'empty' in self.browser.find_element(By.CSS_SELECTOR, 'p').text
+
 

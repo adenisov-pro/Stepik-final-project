@@ -3,19 +3,21 @@ from .locators import LoginPageLocators
 
 
 class LoginPage(BasePage):
+    # должна быть страница входа в систему
     def should_be_login_page(self):
         self.should_be_login_url()
         self.should_be_login_form()
         self.should_be_register_form()
 
+    # должен быть URL-адрес входа в систему
     def should_be_login_url(self):
         assert "/login" in self.browser.current_url, "login is absent in current url"
 
-
+    # должна быть форма входа в систему
     def should_be_login_form(self):
         assert self.is_element_present(*LoginPageLocators.LOGIN_FORM), "Login form is not presented"
 
-
+    # должна быть регистрационная форма
     def should_be_register_form(self):
         assert self.is_element_present(*LoginPageLocators.REGISTER_FORM), " Register form is not presented"
 
