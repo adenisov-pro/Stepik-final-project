@@ -29,6 +29,7 @@ class ProductPage(BasePage):
         button.click()
 
     # should_not_be_success_message – не должно быть сообщения об успехе
+
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "A message about adding an item to the cart is displayed"

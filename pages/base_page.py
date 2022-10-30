@@ -63,6 +63,7 @@ class BasePage:
     def go_to_login_page(self):
         link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         link.click()
+        assert "/accounts/login" in self.browser.current_url, "/accounts/login is absent in current url"
 
     # должна быть ссылка для входа в систему
     def should_be_login_link(self):
@@ -81,4 +82,9 @@ class BasePage:
         button.click()
         assert "/accounts/login" in self.browser.current_url, "/accounts/login is absent in current url"
 
+    # должен быть авторизованным пользователем
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
+        # значок пользователя не отображается\вероятно неавторизованный пользователь
 
